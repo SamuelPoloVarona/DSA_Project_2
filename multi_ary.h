@@ -19,6 +19,7 @@ class multi_ary {
     int getSwaps();
     void setSwaps(int a);
 
+    //heap functionality
     void heapifyDown(int a);
     void heapifyUp(int a);
     void insert(int num);
@@ -26,7 +27,6 @@ class multi_ary {
 
 
 };
-
 
 
 #endif //MULTI_ARY_H

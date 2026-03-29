@@ -1,6 +1,7 @@
 #include "multi_ary.h"
 using namespace std;
 
+//constructing
 multi_ary::multi_ary() {
     setComparisons(0);
     setSwaps(0);
