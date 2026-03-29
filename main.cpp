@@ -4,19 +4,15 @@
 #include <vector>
 #include <random>
 #include "heap.h"
-#include  "multi_ary.h"
+#include "multi_ary.h"
 
 using namespace std;
-
-
 
 int main()
 {
     cout<<"---------------"<<endl;
     cout<<"Binary Heap vs 4-Ary Heap test"<<endl;
     cout<<"---------------"<<endl;
-
-
 
 while(true) {
     cout<<endl;
@@ -25,17 +21,19 @@ while(true) {
     cout<<endl;
     std::string Answer;
     cin>>Answer;
-    if(Answer == "yes") {
+    if(Answer == "yes" || Answer == "A" || Answer == "a") {
         break;
     }
 }
     //Data Generation
     vector<int> dataset;
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> distrib(1, 1000000);
 
     for (int i = 0; i < 100000; i++) {
-        dataset.push_back(rand() % 1000000);
+        dataset.push_back(distrib(gen));
     }
-
 
     //heap test
 
@@ -77,10 +75,8 @@ while(true) {
         //i added counters in my class for comparisons and swaps just if u wanted to get data there too
         //u can just change the names to the variables u wanna use
         cout << "4-ary Heap Build Time: " << duration.count() << " microseconds" << endl;
-        string comparisons = to_string(fh.getComparisons());
-        cout << "Comparisons: " << comparisons << endl;
-        string swaps = to_string(fh.getSwaps());
-        cout << "Swaps: " << swaps << endl;
+        cout << "Comparisons: " << fh.comparisons << endl;
+        cout << "Swaps: " << fh.swaps << endl;
     }
     //Comparing extraction performance
     cout<<endl;
@@ -105,8 +101,8 @@ while(true) {
     }
 
     {
-        fh.setComparisons(0);
-        fh.setSwaps(0);
+        fh.comparisons = 0;
+        fh.swaps = 0;
 
         auto start = chrono::steady_clock::now();
 
@@ -123,12 +119,9 @@ while(true) {
         //i added counters in my class for comparisons and swaps just if u wanted to get data there too
         //u can just change the names to the variables u wanna use
         cout << "4-ary Heap extractMin Time: " << duration.count() << " microseconds" << endl;
-        string comparisons = to_string(fh.getComparisons());
-        cout << "Comparisons: " << comparisons << endl;
-        string swaps = to_string(fh.getSwaps());
-        cout << "Swaps: " << swaps << endl;
+        cout << "Comparisons: " << fh.comparisons << endl;
+        cout << "Swaps: " << fh.swaps << endl;
     }
-
 
     return 0;
 }

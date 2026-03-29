@@ -5,28 +5,17 @@
 using namespace std;
 
 class multi_ary {
-    static int comparisons;
-    static int swaps;
-
+public:
     vector<int> arr;
+    int comparisons;
+    int swaps;
 
-    public:
     multi_ary();
 
-    //testing
-    int getComparisons();
-    void setComparisons(int a);
-    int getSwaps();
-    void setSwaps(int a);
-
-    //heap functionality
     void heapifyDown(int a);
     void heapifyUp(int a);
     void insert(int num);
     int extractMin();
-
-
 };
-
 
 #endif //MULTI_ARY_H

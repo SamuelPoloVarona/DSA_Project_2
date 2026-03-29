@@ -1,9 +1,4 @@
-//
-// Created by Trinca on 3/28/26.
-//
-
 #include "heap.h"
-
 
 // constructor
 BinaryHeap::BinaryHeap() {
@@ -45,7 +40,9 @@ int BinaryHeap::deleteMin() {
     heap[0] = heap.back();
     heap.pop_back();
 
-    heapifyDown(0);
+    if (!heap.empty()) {
+        heapifyDown(0);
+    }
 
     return minVal;
 }
