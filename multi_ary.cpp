@@ -1,6 +1,9 @@
 #include "multi_ary.h"
 using namespace std;
 
+int multi_ary::comparisons = 0;
+int multi_ary::swaps = 0;
+
 //constructing
 multi_ary::multi_ary() {
     setComparisons(0);
@@ -34,7 +37,7 @@ int multi_ary::extractMin() {
     }
     int result = arr.at(0);
     arr.at(0) = arr.at(arr.size()-1);
-    arr.pop_back(arr.at(arr.size()-1));
+    arr.pop_back();
     if (!arr.empty()) {
         heapifyDown(0);
     }

@@ -77,7 +77,9 @@ while(true) {
         //i added counters in my class for comparisons and swaps just if u wanted to get data there too
         //u can just change the names to the variables u wanna use
         cout << "4-ary Heap Time: " << duration.count() << " microseconds" << endl;
-        cout << "Comparisons: " << fh.comparisons << endl;
-        cout << "Swaps: " << fh.swaps << endl;
+        string comparisons = to_string(fh.getComparisons());
+        cout << "Comparisons: " << comparisons << endl;
+        string swaps = to_string(fh.getSwaps());
+        cout << "Swaps: " << swaps << endl;
     }
 }
