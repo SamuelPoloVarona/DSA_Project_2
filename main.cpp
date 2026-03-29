@@ -52,15 +52,15 @@ while(true) {
         auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
 
         cout << endl;
-        cout << "Binary Heap Time: " << duration.count() << " microseconds" << endl;
+        cout << "Binary Heap Build Time: " << duration.count() << " microseconds" << endl;
         cout << "Comparisons: " << bh.comparisons << endl;
         cout << "Swaps: " << bh.swaps << endl;
     }
 
     //4-ary heap test
+    multi_ary fh;
     {
         //whatevr ur class name is
-        multi_ary fh;
 
         auto start = chrono::steady_clock::now();
 
@@ -76,10 +76,59 @@ while(true) {
 
         //i added counters in my class for comparisons and swaps just if u wanted to get data there too
         //u can just change the names to the variables u wanna use
-        cout << "4-ary Heap Time: " << duration.count() << " microseconds" << endl;
+        cout << "4-ary Heap Build Time: " << duration.count() << " microseconds" << endl;
         string comparisons = to_string(fh.getComparisons());
         cout << "Comparisons: " << comparisons << endl;
         string swaps = to_string(fh.getSwaps());
         cout << "Swaps: " << swaps << endl;
     }
+    //Comparing extraction performance
+    cout<<endl;
+    cout<<"--------------------"<<endl;
+    bh.comparisons=0;
+    bh.swaps = 0;
+    {
+        auto start = chrono::steady_clock::now();
+
+        for (int x : dataset) {
+            bh.deleteMin();
+        }
+
+        auto end = chrono::steady_clock::now();
+
+        auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
+
+        cout << endl;
+        cout << "Binary Heap extractMin time: " << duration.count() << " microseconds" << endl;
+        cout << "Comparisons: " << bh.comparisons << endl;
+        cout << "Swaps: " << bh.swaps << endl;
+    }
+
+    {
+        fh.setComparisons(0);
+        fh.setSwaps(0);
+
+        auto start = chrono::steady_clock::now();
+
+        for (int x : dataset) {
+            fh.extractMin();
+        }
+
+        auto end = chrono::steady_clock::now();
+
+        auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
+
+        cout << endl;
+
+        //i added counters in my class for comparisons and swaps just if u wanted to get data there too
+        //u can just change the names to the variables u wanna use
+        cout << "4-ary Heap extractMin Time: " << duration.count() << " microseconds" << endl;
+        string comparisons = to_string(fh.getComparisons());
+        cout << "Comparisons: " << comparisons << endl;
+        string swaps = to_string(fh.getSwaps());
+        cout << "Swaps: " << swaps << endl;
+    }
+
+
+    return 0;
 }
